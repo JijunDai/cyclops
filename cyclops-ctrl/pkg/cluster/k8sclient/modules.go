@@ -69,15 +69,19 @@ func (k *KubernetesClient) GetResourcesForModule(name string) ([]*dto.Resource, 
 	other := make([]unstructured.Unstructured, 0)
 	for _, gvr := range managedGVRs {
 		var rs *unstructured.UnstructuredList
-		if len(k.moduleTargetNamespace) > 0 {
-			rs, err = k.Dynamic.Resource(gvr).Namespace(k.moduleTargetNamespace).List(context.Background(), metav1.ListOptions{
-				LabelSelector: "cyclops.module=" + name,
-			})
-		} else {
-			rs, err = k.Dynamic.Resource(gvr).List(context.Background(), metav1.ListOptions{
-				LabelSelector: "cyclops.module=" + name,
-			})
-		}
+		// if len(k.moduleTargetNamespace) > 0 {
+		// 	rs, err = k.Dynamic.Resource(gvr).Namespace(k.moduleTargetNamespace).List(context.Background(), metav1.ListOptions{
+		// 		LabelSelector: "cyclops.module=" + name,
+		// 	})
+		// } else {
+		// 	rs, err = k.Dynamic.Resource(gvr).List(context.Background(), metav1.ListOptions{
+		// 		LabelSelector: "cyclops.module=" + name,
+		// 	})
+		// }
+
+		rs, err = k.Dynamic.Resource(gvr).List(context.Background(), metav1.ListOptions{
+			LabelSelector: "cyclops.module=" + name,
+		})
 
 		if err != nil {
 			if apierrors.IsNotFound(err) {

@@ -21,6 +21,6 @@ reportWebVitals();
 export {
   ModuleResourceDetails,
   EditModuleComponent,
-  HelmReleaseDetails,
+  // HelmReleaseDetails,
   CreateModuleComponent,
 } from "./components/shared";

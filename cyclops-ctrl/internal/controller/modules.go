@@ -307,9 +307,9 @@ func (m *Modules) CreateModule(ctx *gin.Context) {
 		return
 	}
 
-	if len(m.moduleTargetNamespace) > 0 {
-		module.Spec.TargetNamespace = m.moduleTargetNamespace
-	}
+	// if len(m.moduleTargetNamespace) > 0 {
+	// 	module.Spec.TargetNamespace = m.moduleTargetNamespace
+	// }
 
 	m.telemetryClient.ModuleCreation()
 

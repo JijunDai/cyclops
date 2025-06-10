@@ -371,8 +371,17 @@ func (k *KubernetesClient) GetPodsForNode(nodeName string) ([]apiv1.Pod, error) 
 }
 
 func (k *KubernetesClient) ListNamespaces() ([]string, error) {
+	// Returns a single namespace
+	// if len(k.moduleTargetNamespace) > 0 {
+	// 	return []string{k.moduleTargetNamespace}, nil
+	// }
 	if len(k.moduleTargetNamespace) > 0 {
-		return []string{k.moduleTargetNamespace}, nil
+		// Split the string by commas and trim whitespace
+		namespaces := strings.Split(k.moduleTargetNamespace, ",")
+		for i, ns := range namespaces {
+			namespaces[i] = strings.TrimSpace(ns) // Clean up any extra spaces
+		}
+		return namespaces, nil // Returns a slice of namespaces
 	}
 
 	namespaceList, err := k.clientset.CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})

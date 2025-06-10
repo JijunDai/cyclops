@@ -26,11 +26,12 @@ const SideNav = () => {
   useEffect(() => {
     setSelectedKeys(location.pathname.split("/")[1]);
 
-    if (location.pathname.startsWith(PathConstants.ADDONS_MCP_SERVER)) {
-      setOpenKeys(["addons"]);
-    } else {
-      setOpenKeys([]);
-    }
+    // if (location.pathname.startsWith(PathConstants.ADDONS_MCP_SERVER)) {
+    //   setOpenKeys(["addons"]);
+    // } else {
+    //   setOpenKeys([]);
+    // }
+    setOpenKeys([]);
   }, [location.pathname]);
 
   const sidebarItems: MenuProps["items"] = [
@@ -44,32 +45,32 @@ const SideNav = () => {
       icon: <SnippetsOutlined />,
       key: "templates",
     },
-    {
-      label: <a href={PathConstants.NODES}>Nodes</a>,
-      icon: <HddOutlined />,
-      key: "nodes",
-    },
-    {
-      label: (
-        <a href={PathConstants.HELM_RELEASES}>
-          Helm releases <ThunderboltFilled style={{ color: "#ffcc66" }} />
-        </a>
-      ),
-      icon: <img alt="" style={{ height: "14px" }} src={helmLogo} />,
-      key: "helm",
-    },
-    {
-      label: "Addons",
-      icon: <ApiOutlined />,
-      key: "addons",
-      children: [
-        {
-          icon: <RobotOutlined />,
-          label: <a href={PathConstants.ADDONS_MCP_SERVER}>MCP server</a>,
-          key: "addons-mcp",
-        },
-      ],
-    },
+    // {
+    //   label: <a href={PathConstants.NODES}>Nodes</a>,
+    //   icon: <HddOutlined />,
+    //   key: "nodes",
+    // },
+    // {
+    //   label: (
+    //     <a href={PathConstants.HELM_RELEASES}>
+    //       Helm releases <ThunderboltFilled style={{ color: "#ffcc66" }} />
+    //     </a>
+    //   ),
+    //   icon: <img alt="" style={{ height: "14px" }} src={helmLogo} />,
+    //   key: "helm",
+    // },
+    // {
+    //   label: "Addons",
+    //   icon: <ApiOutlined />,
+    //   key: "addons",
+    //   children: [
+    //     {
+    //       icon: <RobotOutlined />,
+    //       label: <a href={PathConstants.ADDONS_MCP_SERVER}>MCP server</a>,
+    //       key: "addons-mcp",
+    //     },
+    //   ],
+    // },
   ];
 
   const tagChangelogLink = (tag: string) => {
@@ -104,7 +105,7 @@ const SideNav = () => {
         openKeys={openKeys}
         onOpenChange={(keys) => setOpenKeys(keys)}
       />
-      <Button
+      {/* <Button
         style={{ background: "transparent", margin: "auto 25px 12px 25px" }}
         icon={<BugFilled />}
         className={"reportbug"}
@@ -143,7 +144,7 @@ const SideNav = () => {
         >
           <GithubFilled /> {window.__RUNTIME_CONFIG__.REACT_APP_VERSION}
         </Link>
-      </center>
+      </center> */}
     </div>
   );
 };
